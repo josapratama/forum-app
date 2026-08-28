@@ -4,7 +4,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ["airbnb", "airbnb/hooks"],
+  extends: ["airbnb", "airbnb/hooks", "plugin:storybook/recommended"],
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",

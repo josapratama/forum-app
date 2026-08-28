@@ -6,8 +6,15 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint src --ext .js,.jsx --max-warnings 0"
+    "preview": "vite preview --port 4173",
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint src --ext .js,.jsx --max-warnings 0",
+    "test": "vitest run --project=default",
+    "test:watch": "vitest --project=default",
+    "test:coverage": "vitest run --project=default --coverage",
+    "e2e": "cypress run",
+    "e2e:open": "cypress open",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
@@ -18,15 +25,32 @@
     "react-router-dom": "^6.27.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.6",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
+    "@vitest/coverage-v8": "^4.1.11",
+    "cypress": "^15.21.1",
     "eslint": "^8.57.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^4.6.2",
-    "vite": "^5.4.10"
+    "jsdom": "^29.1.1",
+    "vite": "^5.4.10",
+    "vitest": "^4.1.11",
+    "storybook": "^10.5.10",
+    "@storybook/react-vite": "^10.5.10",
+    "@chromatic-com/storybook": "latest",
+    "@storybook/addon-vitest": "^10.5.10",
+    "@storybook/addon-a11y": "^10.5.10",
+    "@storybook/addon-docs": "^10.5.10",
+    "@storybook/addon-mcp": "latest",
+    "eslint-plugin-storybook": "^10.5.10",
+    "@vitest/browser-playwright": "4.1.11",
+    "playwright": "latest"
   }
 }
