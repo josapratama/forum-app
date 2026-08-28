@@ -18,13 +18,20 @@
  * - hideLoading: set isLoading false
  */
 
-import { describe, it, expect, vi } from 'vitest';
-import authReducer, { logout, clearError } from '../../store/slices/authSlice';
-import { loginUser, registerUser, fetchOwnProfile } from '../../store/slices/authSlice';
-import loadingReducer, { showLoading, hideLoading } from '../../store/slices/loadingSlice';
+import { describe, it, expect, vi } from "vitest";
+import authReducer, { logout, clearError } from "../../store/slices/authSlice";
+import {
+  loginUser,
+  registerUser,
+  fetchOwnProfile,
+} from "../../store/slices/authSlice";
+import loadingReducer, {
+  showLoading,
+  hideLoading,
+} from "../../store/slices/loadingSlice";
 
 // Mock api module agar removeAccessToken tidak melempar error
-vi.mock('../../api', () => ({
+vi.mock("../../api", () => ({
   default: {
     removeAccessToken: vi.fn(),
     putAccessToken: vi.fn(),
@@ -44,77 +51,98 @@ const loadingInitialState = {
   isLoading: false,
 };
 
-describe('authSlice reducer', () => {
-  describe('logout', () => {
-    it('should set user to null when logout is dispatched', () => {
-      const state = { ...authInitialState, user: { id: 'user-1', name: 'Alice' } };
+describe("authSlice reducer", () => {
+  describe("logout", () => {
+    it("should set user to null when logout is dispatched", () => {
+      const state = {
+        ...authInitialState,
+        user: { id: "user-1", name: "Alice" },
+      };
       const nextState = authReducer(state, logout());
       expect(nextState.user).toBeNull();
     });
   });
 
-  describe('clearError', () => {
-    it('should set error to null when clearError is dispatched', () => {
-      const state = { ...authInitialState, error: 'Some error' };
+  describe("clearError", () => {
+    it("should set error to null when clearError is dispatched", () => {
+      const state = { ...authInitialState, error: "Some error" };
       const nextState = authReducer(state, clearError());
       expect(nextState.error).toBeNull();
     });
   });
 
-  describe('loginUser extraReducers', () => {
-    it('should set isLoading true and error null on loginUser.pending', () => {
+  describe("loginUser extraReducers", () => {
+    it("should set isLoading true and error null on loginUser.pending", () => {
       const action = { type: loginUser.pending.type };
-      const nextState = authReducer({ ...authInitialState, error: 'old error' }, action);
+      const nextState = authReducer(
+        { ...authInitialState, error: "old error" },
+        action,
+      );
       expect(nextState.isLoading).toBe(true);
       expect(nextState.error).toBeNull();
     });
 
-    it('should set user and isLoading false on loginUser.fulfilled', () => {
-      const user = { id: 'user-1', name: 'Alice' };
+    it("should set user and isLoading false on loginUser.fulfilled", () => {
+      const user = { id: "user-1", name: "Alice" };
       const action = { type: loginUser.fulfilled.type, payload: user };
-      const nextState = authReducer({ ...authInitialState, isLoading: true }, action);
+      const nextState = authReducer(
+        { ...authInitialState, isLoading: true },
+        action,
+      );
       expect(nextState.isLoading).toBe(false);
       expect(nextState.user).toEqual(user);
     });
 
-    it('should set error and isLoading false on loginUser.rejected', () => {
-      const action = { type: loginUser.rejected.type, payload: 'Invalid credentials' };
-      const nextState = authReducer({ ...authInitialState, isLoading: true }, action);
+    it("should set error and isLoading false on loginUser.rejected", () => {
+      const action = {
+        type: loginUser.rejected.type,
+        payload: "Invalid credentials",
+      };
+      const nextState = authReducer(
+        { ...authInitialState, isLoading: true },
+        action,
+      );
       expect(nextState.isLoading).toBe(false);
-      expect(nextState.error).toBe('Invalid credentials');
+      expect(nextState.error).toBe("Invalid credentials");
     });
   });
 
-  describe('registerUser extraReducers', () => {
-    it('should set isLoading true on registerUser.pending', () => {
+  describe("registerUser extraReducers", () => {
+    it("should set isLoading true on registerUser.pending", () => {
       const action = { type: registerUser.pending.type };
       const nextState = authReducer(authInitialState, action);
       expect(nextState.isLoading).toBe(true);
     });
 
-    it('should set isLoading false on registerUser.fulfilled', () => {
+    it("should set isLoading false on registerUser.fulfilled", () => {
       const action = { type: registerUser.fulfilled.type, payload: {} };
-      const nextState = authReducer({ ...authInitialState, isLoading: true }, action);
+      const nextState = authReducer(
+        { ...authInitialState, isLoading: true },
+        action,
+      );
       expect(nextState.isLoading).toBe(false);
     });
 
-    it('should set error on registerUser.rejected', () => {
-      const action = { type: registerUser.rejected.type, payload: 'Email already taken' };
+    it("should set error on registerUser.rejected", () => {
+      const action = {
+        type: registerUser.rejected.type,
+        payload: "Email already taken",
+      };
       const nextState = authReducer(authInitialState, action);
-      expect(nextState.error).toBe('Email already taken');
+      expect(nextState.error).toBe("Email already taken");
     });
   });
 
-  describe('fetchOwnProfile extraReducers', () => {
-    it('should set user on fetchOwnProfile.fulfilled', () => {
-      const user = { id: 'user-1', name: 'Alice' };
+  describe("fetchOwnProfile extraReducers", () => {
+    it("should set user on fetchOwnProfile.fulfilled", () => {
+      const user = { id: "user-1", name: "Alice" };
       const action = { type: fetchOwnProfile.fulfilled.type, payload: user };
       const nextState = authReducer(authInitialState, action);
       expect(nextState.user).toEqual(user);
     });
 
-    it('should set user to null on fetchOwnProfile.rejected', () => {
-      const state = { ...authInitialState, user: { id: 'user-1' } };
+    it("should set user to null on fetchOwnProfile.rejected", () => {
+      const state = { ...authInitialState, user: { id: "user-1" } };
       const action = { type: fetchOwnProfile.rejected.type };
       const nextState = authReducer(state, action);
       expect(nextState.user).toBeNull();
@@ -122,20 +150,20 @@ describe('authSlice reducer', () => {
   });
 });
 
-describe('loadingSlice reducer', () => {
-  it('should set isLoading to true when showLoading is dispatched', () => {
+describe("loadingSlice reducer", () => {
+  it("should set isLoading to true when showLoading is dispatched", () => {
     const nextState = loadingReducer(loadingInitialState, showLoading());
-    expect(nextState.isLoading).toBe(true);
+    expect(nextState.isLoading).toBe(false); // intentionally wrong for CI error screenshot
   });
 
-  it('should set isLoading to false when hideLoading is dispatched', () => {
+  it("should set isLoading to false when hideLoading is dispatched", () => {
     const state = { isLoading: true };
     const nextState = loadingReducer(state, hideLoading());
     expect(nextState.isLoading).toBe(false);
   });
 
-  it('should return initial state when no action matches', () => {
-    const nextState = loadingReducer(undefined, { type: '@@INIT' });
+  it("should return initial state when no action matches", () => {
+    const nextState = loadingReducer(undefined, { type: "@@INIT" });
     expect(nextState).toEqual(loadingInitialState);
   });
 });
