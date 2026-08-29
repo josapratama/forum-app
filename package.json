@@ -12,7 +12,7 @@
     "test:watch": "vitest --project=default",
     "test:coverage": "vitest run --project=default --coverage",
     "e2e": "cypress run",
-    "e2e:dev": "start-server-and-test dev http-get://localhost:5173 e2e",
+    "e2e:dev": "start-server-and-test dev http-get://0.0.0.0:5173 e2e",
     "e2e:open": "cypress open",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
