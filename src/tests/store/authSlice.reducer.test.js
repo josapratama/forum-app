@@ -18,9 +18,13 @@
  * - hideLoading: set isLoading false
  */
 
-import { describe, it, expect, vi } from 'vitest';
-import authReducer, { logout, clearError } from '../../store/slices/authSlice';
-import { loginUser, registerUser, fetchOwnProfile } from '../../store/slices/authSlice';
+import {
+  describe, it, expect, vi,
+} from 'vitest';
+import authReducer, {
+  logout, clearError, loginUser, registerUser, fetchOwnProfile,
+} from '../../store/slices/authSlice';
+
 import loadingReducer, { showLoading, hideLoading } from '../../store/slices/loadingSlice';
 
 // Mock api module agar removeAccessToken tidak melempar error

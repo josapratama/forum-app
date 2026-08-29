@@ -10,7 +10,9 @@
  * - fetchOwnProfile: gagal, set user menjadi null
  */
 
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import {
+  describe, it, expect, vi, beforeEach,
+} from 'vitest';
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer, { loginUser, registerUser, fetchOwnProfile } from '../../store/slices/authSlice';
 import api from '../../api';
@@ -25,10 +27,9 @@ vi.mock('../../api', () => ({
   },
 }));
 
-const makeStore = () =>
-  configureStore({
-    reducer: { auth: authReducer },
-  });
+const makeStore = () => configureStore({
+  reducer: { auth: authReducer },
+});
 
 describe('authSlice thunks', () => {
   beforeEach(() => {

@@ -14,7 +14,9 @@
  * - neutralVoteComment: berhasil, dispatch fulfilled dengan commentId dan userId
  */
 
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import {
+  describe, it, expect, vi, beforeEach,
+} from 'vitest';
 import { configureStore } from '@reduxjs/toolkit';
 import threadDetailReducer, {
   fetchThreadDetail,
@@ -41,10 +43,9 @@ vi.mock('../../api', () => ({
   },
 }));
 
-const makeStore = () =>
-  configureStore({
-    reducer: { threadDetail: threadDetailReducer },
-  });
+const makeStore = () => configureStore({
+  reducer: { threadDetail: threadDetailReducer },
+});
 
 const makeThread = (overrides = {}) => ({
   id: 'thread-1',
@@ -104,7 +105,7 @@ describe('threadDetailSlice thunks', () => {
       store.dispatch({ type: fetchThreadDetail.fulfilled.type, payload: thread });
       await store.dispatch(addComment({ threadId: 'thread-1', content: 'Hello' }));
 
-      const comments = store.getState().threadDetail.thread.comments;
+      const { comments } = store.getState().threadDetail.thread;
       expect(comments).toHaveLength(1);
       expect(comments[0]).toEqual(newComment);
     });

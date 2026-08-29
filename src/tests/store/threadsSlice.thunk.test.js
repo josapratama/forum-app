@@ -11,7 +11,9 @@
  * - neutralVoteThread: berhasil, dispatch fulfilled dengan threadId dan userId
  */
 
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import {
+  describe, it, expect, vi, beforeEach,
+} from 'vitest';
 import { configureStore } from '@reduxjs/toolkit';
 import threadsReducer, {
   fetchThreads,
@@ -33,10 +35,9 @@ vi.mock('../../api', () => ({
   },
 }));
 
-const makeStore = () =>
-  configureStore({
-    reducer: { threads: threadsReducer },
-  });
+const makeStore = () => configureStore({
+  reducer: { threads: threadsReducer },
+});
 
 describe('threadsSlice thunks', () => {
   beforeEach(() => {

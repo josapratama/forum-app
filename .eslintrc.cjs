@@ -23,6 +23,7 @@ module.exports = {
         jsx: "never",
       },
     ],
+    "import/no-unresolved": ["error", { ignore: ["^storybook/"] }],
     "no-param-reassign": [
       "error",
       {

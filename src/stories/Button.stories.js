@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { fn } from 'storybook/test';
 
 import { Button } from './Button';
