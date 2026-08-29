@@ -20,8 +20,8 @@ import threadsReducer, {
   setCategoryFilter,
   optimisticUpVoteThread,
   optimisticDownVoteThread,
+  fetchThreads, addThread,
 } from '../../store/slices/threadsSlice';
-import { fetchThreads, addThread } from '../../store/slices/threadsSlice';
 
 const initialState = {
   list: [],

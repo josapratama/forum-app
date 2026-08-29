@@ -27,3 +27,7 @@ dist-ssr
 storybook-static
 
 *.txt
+
+# Submission files
+*.zip
+screenshots/

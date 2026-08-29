@@ -25,8 +25,8 @@ import threadDetailReducer, {
   optimisticDownVoteDetail,
   optimisticUpVoteComment,
   optimisticDownVoteComment,
+  fetchThreadDetail, addComment,
 } from '../../store/slices/threadDetailSlice';
-import { fetchThreadDetail, addComment } from '../../store/slices/threadDetailSlice';
 
 const initialState = {
   thread: null,

@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { expect, userEvent, within } from 'storybook/test';
 
 import { Page } from './Page';
