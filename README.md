@@ -1,16 +1,108 @@
-# React + Vite
+# Forum App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplikasi forum diskusi berbasis React yang dibangun dengan Redux Toolkit, dilengkapi dengan Automation Testing dan CI/CD.
 
-Currently, two official plugins are available:
+## 🚀 Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Live URL:** https://forum-app-woad-two.vercel.app/
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 18** + **Vite**
+- **Redux Toolkit** — state management
+- **React Router DOM** — routing
+- **Storybook** — component documentation (React Ecosystem)
+- **Vitest** + **React Testing Library** — unit & integration testing
+- **Cypress** — E2E testing
+- **GitHub Actions** — CI/CD
 
-## Expanding the ESLint configuration
+## 📦 Instalasi
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+```
+
+## 🧪 Menjalankan Test
+
+### Unit & Integration Test
+
+```bash
+npm test
+```
+
+### E2E Test
+
+E2E test membutuhkan server yang berjalan. Ada dua cara:
+
+**Cara 1 — Otomatis (dev server + cypress sekaligus):**
+
+```bash
+npm run e2e:dev
+```
+
+Perintah ini akan menjalankan dev server di port 5173, menunggu hingga siap, lalu menjalankan Cypress secara otomatis.
+
+**Cara 2 — Manual (jika sudah ada server berjalan di port 4173):**
+
+```bash
+npm run build
+npm run preview  # jalankan di terminal terpisah
+npm run e2e      # jalankan di terminal lain
+```
+
+**Cara 3 — Buka Cypress UI:**
+
+```bash
+npm run e2e:open
+```
+
+## 🖥️ Menjalankan Aplikasi
+
+```bash
+# Development
+npm run dev
+
+# Production build
+npm run build
+npm run preview
+```
+
+## 📖 Storybook
+
+```bash
+npm run storybook
+```
+
+## 🔧 Scripts
+
+| Script              | Deskripsi                                      |
+| ------------------- | ---------------------------------------------- |
+| `npm run dev`       | Jalankan dev server                            |
+| `npm run build`     | Build untuk production                         |
+| `npm run preview`   | Preview hasil build di port 4173               |
+| `npm test`          | Jalankan unit & integration tests              |
+| `npm run e2e`       | Jalankan E2E tests (perlu server di port 4173) |
+| `npm run e2e:dev`   | Jalankan E2E tests dengan dev server otomatis  |
+| `npm run e2e:open`  | Buka Cypress UI                                |
+| `npm run storybook` | Jalankan Storybook di port 6006                |
+
+## 📁 Struktur Project
+
+```
+src/
+├── api/          # API layer
+├── components/   # Reusable components
+├── hooks/        # Custom hooks
+├── pages/        # Page components
+├── store/        # Redux store & slices
+│   └── slices/   # Auth, Threads, ThreadDetail, Leaderboard, Loading
+├── stories/      # Storybook stories
+├── styles/       # Global styles
+├── tests/        # Unit & component tests
+│   ├── components/
+│   └── store/
+└── utils/        # Utility functions
+
+cypress/
+└── e2e/          # End-to-End tests
+```

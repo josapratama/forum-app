@@ -58,7 +58,7 @@ jobs:
           start: npm run preview
           wait-on: "http://localhost:4173"
           wait-on-timeout: 60
-          command: npm run e2e
+          command: npm run e2e -- --config baseUrl=http://localhost:4173
         env:
           TEST_USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
           TEST_USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
